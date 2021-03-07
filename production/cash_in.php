@@ -6,7 +6,7 @@
 <?php
 
 
-$conn = mysqli_connect("localhost", "root", "", "admin");
+include 'connection.php';
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $description = $_POST['text'];
@@ -35,7 +35,7 @@ if(mysqli_num_rows($result)>0){
 	while($row=mysqli_fetch_assoc($result)){
      
     $amount =$row['amount'];
-    
+
     }}
 	 ?>
 <?php include 'content/header.php'; ?>
@@ -62,7 +62,7 @@ if(mysqli_num_rows($result)>0){
                                 <label class="col-form-label col-md-3 col-sm-3 label-align"  for="first-name" >Amount
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="amount" readonly="readonly" class="form-control " name="amount"  value="<?php echo $amount;?>"/>
+                                    <input type="text" id="amount" readonly="readonly" class="form-control " name="amount" value="<?php echo $amount;?>"  />
                                 </div>
                             </div>
 
@@ -70,7 +70,7 @@ if(mysqli_num_rows($result)>0){
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Date
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="date" id="first-name" class="form-control " name="date">
+                                    <input type="date" id="first-name" class="form-control " name="date" required="required" />
                                 </div>
                             </div>
 
@@ -78,7 +78,7 @@ if(mysqli_num_rows($result)>0){
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <textarea id="middle-name" class="form-control" type="text" name="text" rows="3" cols="50">
+                                    <textarea id="txtName" class="form-control" type="text" name="text" rows="5" cols="40" required="required">
 													</textarea>
 
                                 </div>
@@ -87,7 +87,7 @@ if(mysqli_num_rows($result)>0){
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align"> Price </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="price"  class="form-control" type="text " name="price">
+                                    <input id="price"  class="form-control" type="text " name="price" required="required"  onkeypress='return restrictAlphabets(event)'/>
                                 </div>
                             </div>
 
@@ -102,19 +102,15 @@ if(mysqli_num_rows($result)>0){
                                         </label></div>
                                     <div class="col-md-4 col-sm-4 pt-2">
                                         <label><input type="radio" id="cash2"  name="cash" value="cash out"> Cash Out
-                                        </label></div>
-                                    
+                                        </label></div>       
                                 </div>
                             </div>
-
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
+                            <br>
+                            <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button type="submit" class="btn btn-success" name="submit" value="submit">Submit</button>
                                 </div>
-                            </div>
-
                         </form>
+                        <div class="ln_solid"></div>
                     </div>
                 </div>
             </div>
@@ -125,31 +121,7 @@ if(mysqli_num_rows($result)>0){
 
     <!-- Footer -->
     <?php include 'content/footer.php' ?>
-
-  
-    <!-- <script> -->
-
-
-
-
-
-
-
-
-
-
-
 <script>
-//         var amount = $('#amount').val();
-
-//         $( "#price" ).change(function() {
-//             debugger
-//             var price = $('#price').val();
-//             debugger
-//   var total =parseInt(amount)+parseInt(price);
-//   $('#amount').val(total);
-// });
-// abc
 $(document).ready(function() {
     var total = 0
     $('input:radio[name=cash]').change(function() {
@@ -179,68 +151,42 @@ $(document).ready(function() {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-// $(document).ready(function(){
-//     $('#cash1,#cash2').change(function(){
-//     price = $('#price').text();
-//     if($('#cash2').is(':checked')) {
-//     debugger
-//         // price = parseInt(price) + 40;
-
-//         // ($('#cash2').is(':checked'))
-//         var price = $('#price').val();
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//         // var total =parseInt(amount)-parseInt(price);
-      
-//     } else {
-//         debugger
-//         // price = parseInt(price) - 40;
-//         ($('#cash1').is(':checked'))
-//         var price = $('#price').val();
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//         // var total= parseInt(amount)-parseInt(price);
-//     }
-//     debugger
-//     $('#price').text(price);
-//     $('#amount').val(total);
-//   });
-// });
-
-
-
-
-
-
-
-//   var amount = $('#amount').val();
-// debugger
-//   $( "#price" ).change(function() {
-
-// //   var price = $('#price').val();
-
-// if($('#cash1').is(':checked')) {
-// debugger
-//   var total =parseInt(amount)+parseInt(price)
-// }
-// //   $('#amount').val(total);}
-//   else  {
-//  debugger
-//   ($('#cash2').is(':checked'))
-//   debugger
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//   }
-//         });
-
 </script> 
+<script type="text/javascript">
+         /*code: 48-57 Numbers*/
+         function restrictAlphabets(e) {
+             var x = e.which || e.keycode;
+             if ((x >= 48 && x <= 57))
+                 return true;
+             else
+                 return false;
+         }
+      </script>
+      <script>
+      $('#dsTest').keyup(function() {
+  if (this.value.match(/[^a-zA-Z0-9 ]/g)) {
+    this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
+  } 
+});
+
+$('#dsTest').focusout(function() {
+  this.value = this.value.trim();
+});
+</script>
+<script>
+ $('#txtName').keypress(function (e) {
+        var regex = new RegExp("^[a-zA-Z \s]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+        else
+        {
+        e.preventDefault();
+        // alert('Please Enter Alphabate');
+        return false;
+        }
+    });
+ </script>
+
 </html>

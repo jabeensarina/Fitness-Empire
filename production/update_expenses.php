@@ -1,14 +1,10 @@
-<?php
-session_start();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 
 
 <?php
-$conn = mysqli_connect("localhost", "root", "", "admin");
+include 'connection.php';
 $id="";
 $date="";
 $description= "";
@@ -17,9 +13,7 @@ $amount="";
 $cash="";
 
 
-
-$update = $_SESSION["upid"];
-// echo $update;
+$update = isset($_GET['id']) ? $_GET['id'] : '';
  $upd_id="SELECT * FROM `cash_in` WHERE `id` = '$update'";
  $result=mysqli_query($conn,$upd_id);
  if(mysqli_num_rows($result)>0){
@@ -35,15 +29,14 @@ $update = $_SESSION["upid"];
 ?>
 <?php
 
-$conn = mysqli_connect("localhost", "root", "", "admin");
+include 'connection.php';
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $description = $_POST['text'];
     $price = $_POST['price'];
     $amount = $_POST['amount'];
     $cash = $_POST['cash'];
-
-
+   
     echo $date . " " . $description . " " . $price . " " . $amount. " " . $cash;
 
     $sql="UPDATE `cash_in` SET `date`='$date',`description`='$description',`price`='$price',`amount`='$amount',`cash`='$cash' WHERE `id`='$update'";
@@ -106,7 +99,7 @@ if(mysqli_num_rows($result)>0){
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <textarea  class="form-control" type="text" name="text" rows="3" cols="50"  ><?php echo $description; ?>
+                                    <textarea  id="txtName" class="form-control" type="text" name="text" rows="5" cols="40"  ><?php echo $description; ?>
 								</textarea>
 
                                 </div>
@@ -115,7 +108,7 @@ if(mysqli_num_rows($result)>0){
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align"> Price </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="price"  class="form-control" type="text " name="price" value="<?php echo $price; ?>" />
+                                    <input id="price"  class="form-control" type="text " name="price" value="<?php echo $price; ?>" onkeypress='return restrictAlphabets(event)'/>
                                 </div>
                             </div>
 
@@ -131,18 +124,13 @@ if(mysqli_num_rows($result)>0){
                                     <div class="col-md-4 col-sm-4 pt-2">
                                         <label><input type="radio" id="cash2"  name="cash" value="cash out" <?php if ($cash == 'cash out')  { echo "checked"; } ?>> Cash Out
                                         </label></div>
-                                    
                                 </div>
-                            </div>
-
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
+                            </div><br>
+                                <div class="col-md-6 col-sm-6 offset-md-3 ">
                                     <button type="submit" class="btn btn-success" name="submit" value="submit">Update</button>
                                 </div>
-                            </div>
-
                         </form>
+                        <div class="ln_solid"></div>
                     </div>
                 </div>
             </div>
@@ -153,31 +141,7 @@ if(mysqli_num_rows($result)>0){
 
     <!-- Footer -->
     <?php include 'content/footer.php' ?>
-
-  
-    <!-- <script> -->
-
-
-
-
-
-
-
-
-
-
-
 <script>
-//         var amount = $('#amount').val();
-
-//         $( "#price" ).change(function() {
-//             debugger
-//             var price = $('#price').val();
-//             debugger
-//   var total =parseInt(amount)+parseInt(price);
-//   $('#amount').val(total);
-// });
-// abc
 $(document).ready(function() {
     var total = 0
     $('input:radio[name=cash]').change(function() {
@@ -207,68 +171,30 @@ $(document).ready(function() {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-// $(document).ready(function(){
-//     $('#cash1,#cash2').change(function(){
-//     price = $('#price').text();
-//     if($('#cash2').is(':checked')) {
-//     debugger
-//         // price = parseInt(price) + 40;
-
-//         // ($('#cash2').is(':checked'))
-//         var price = $('#price').val();
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//         // var total =parseInt(amount)-parseInt(price);
-      
-//     } else {
-//         debugger
-//         // price = parseInt(price) - 40;
-//         ($('#cash1').is(':checked'))
-//         var price = $('#price').val();
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//         // var total= parseInt(amount)-parseInt(price);
-//     }
-//     debugger
-//     $('#price').text(price);
-//     $('#amount').val(total);
-//   });
-// });
-
-
-
-
-
-
-
-//   var amount = $('#amount').val();
-// debugger
-//   $( "#price" ).change(function() {
-
-// //   var price = $('#price').val();
-
-// if($('#cash1').is(':checked')) {
-// debugger
-//   var total =parseInt(amount)+parseInt(price)
-// }
-// //   $('#amount').val(total);}
-//   else  {
-//  debugger
-//   ($('#cash2').is(':checked'))
-//   debugger
-//   var total =parseInt(amount)-parseInt(price);
-//   $('#amount').val(total);
-//   }
-//         });
-
 </script> 
+<script>
+ $('#txtName').keypress(function (e) {
+        var regex = new RegExp("^[a-zA-Z \s]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+        else
+        {
+        e.preventDefault();
+        // alert('Please Enter Alphabate');
+        return false;
+        }
+    });
+ </script>
+  <script type="text/javascript">
+         /*code: 48-57 Numbers*/
+         function restrictAlphabets(e) {
+             var x = e.which || e.keycode;
+             if ((x >= 48 && x <= 57))
+                 return true;
+             else
+                 return false;
+         }
+      </script>
 </html>

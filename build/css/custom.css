@@ -1714,35 +1714,41 @@ legend {
 .profile_details .profile_view .divider {
   border-top: 1px solid #e5e5e5;
   padding-top: 5px;
-  margin-top: 5px; }
+  margin-top: 5px; 
+}
 
 .profile_details .profile_view .ratings {
   margin-bottom: 0; } 
 
 .profile_details .profile_view .left {
-  margin-top: 20px; }
+  margin-top: 20px; 
+}
 
 .profile_details .profile_view .left p {
   margin-bottom: 3px; }
 
 .profile_details .profile_view .right {
   margin-top: 0px;
-  padding: 10px; }
+  padding: 10px; 
+}
 
 .profile_details .profile_view .img-circle {
   border: 1px solid #E6E9ED;
   padding: 2px; }
 
 .profile_details .profile_view h2 {
-  margin: 5px 0; }
+  margin: 5px 0;
+}
 
 .profile_details .profile_view .ratings {
   text-align: left;
-  font-size: 16px; }
+  font-size: 16px; 
+}
 
 .brief {
   margin: 0;
-  font-weight: 300; }
+  font-weight: 300; 
+}
 
 .profile_details .profile_left {
   background: white; }
@@ -5100,3 +5106,11 @@ text-align:center;
 
 }
 
+
+@media print {
+  .no-print {
+      display: none !important
+  }
+}
+.error {color: #fd0707;}  
+.success {color: #085722;}

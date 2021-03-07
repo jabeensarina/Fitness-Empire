@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cage </title>
+    <title>Fitness Empire </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,19 +36,12 @@ if(mysqli_num_rows($result)>0){
 		<script>
 		location.href="index.html";
 		</script>
-		';
-		
+		';		
 }
-
-	
 	else {
 		echo "Invalid User";
 		}		
-
 }
-
-
-
 ?>
   <body class="login">
     <div>
@@ -66,26 +59,20 @@ if(mysqli_num_rows($result)>0){
               <div>
                 <input type="password" class="form-control" placeholder="Password" required name="upass" />
               </div>
-              <input class="btn btn-primary" type="submit" name="submit" value="submit"/> 
+              <input class="btn btn-primary" type="submit" name="submit" value="Submit"/> 
               <div>
                 <a class="btn btn-default submit" href="index.html" ></a>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
-
               <div class="clearfix"></div>
-
               <div class="separator">
                 <p class="change_link">New to site?
                   <a href="#signup" class="to_register"> Create Account </a>
                 </p>
-
                 <div class="clearfix"></div>
                 <br />
-
                 <div>
-                  <h1>CAGE</h1>
-                <!-- <img src="images/cage.png" alt="..." width="150px" height="150px" >  -->
-                  <!-- <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> -->
+                <img classs="img " src="images/fitnest_empire.png " width="auto" height="200"> 
                   <p> All Rights Reserved
                     </p>
                 </div>
@@ -110,20 +97,15 @@ if(mysqli_num_rows($result)>0){
               <div>
                 <a class="btn btn-primary submit" href="index.html">Submit</a>
               </div>
-
               <div class="clearfix"></div>
-
               <div class="separator">
-                <p class="change_link">Already a member ?
+                <p class="change_link">Already a member?
                   <a href="#signin" class="to_register"> Log in </a>
                 </p>
-
                 <div class="clearfix"></div>
                 <br />
-
                 <div>
-                <img src="images/cage.png" alt="..." width="150px" height="150px" >
-                  <!-- <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> -->
+                <img classs="img " src="images/fitnest_empire.png " width="auto" height="200"> 
                   <p>All Rights Reserved.Privacy and Terms</p>
                 </div>
               </div>

@@ -2,74 +2,52 @@
 <html lang="en">
 
 <?php
-$id = "";
-$add_package = "";
-$conn = mysqli_connect("localhost", "root", "", "admin");
-$sql = "SELECT * FROM `package`";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $iden = $row["id"];
-        // $price =$row["price"];
-        //  echo $id=['id'];
-        $price = $row['price'];
-        //   $discount =$row['discount'];
-
-?>
-<?php
-    }
-}
-
-?>
-
-
-
-<?php
 $add_package = "";
 $pricee = "";
 $discount = "";
 $iden = "";
+$nic="";
 
-
-$conn = mysqli_connect("localhost", "root", "", "admin");
+include 'connection.php';
 if (isset($_POST['submit'])) {
     $id = "";
     $m_name = $_POST['name'];
-    $re_address = $_POST['address'];
+    $re_address= $_POST['address'];
     $res_no = $_POST['phone_no'];
     $cell_no = $_POST['cell_no'];
     $date_birth = $_POST['dt_birth'];
     $nic = $_POST['nic'];
     $email = $_POST['email'];
     $occupation = $_POST['occupation'];
-
     $sel_package = $_POST['select_pkge'];
     $trainer = $_POST['trainer'];
-    $trainer_name = $_POST['select_trainer'];
+    if($trainer == 'without trainer') {
+        $name_trainer= '';
+    }else{
+        $name_trainer= $_POST['select_trainer'];
+    }
 
-    $pricee= $_POST['price'];
-    $discountt = $_POST['discount'];
+    $pricee = $_POST['price'];
     $total_price = $_POST['number'];
+    $discountt = $_POST['discount'];
+    echo $sel_package;
+ 
+    echo $m_name . " " . $re_address . " " . $res_no . " " . $cell_no . " " . $date_birth . " " . $nic . " " . $email . " " . $occupation . " " . $sel_package . " " . $trainer . " " . $name_trainer . " " . $pricee . " " . $discountt . " " . $total_price;
+    $sql  = "INSERT INTO `admission_form`(`id`, `mem_name`, `res_address`, `res_phone_no`, `cell_no`, `date_birth`, `nic_no`, `email`, `occupation`, `select_package`, `trainer`, `name_trainer`, `price`, `discount`, `total_price`) VALUES ('','$m_name','$re_address','$res_no','$cell_no','$date_birth','$nic','$email','$occupation','$sel_package','$trainer','$name_trainer','$pricee','$discountt','$total_price')";
 
-
-    echo $m_name . " " . $re_address . " " . $res_no . " " . $cell_no . " " . $date_birth . " " . $nic . " " . $email . " " . $occupation . " " . $sel_package . " " . $trainer . " " . $trainer_name . " " . $pricee . " " . $discountt . " " . $total_price;
-    $sql  = "INSERT INTO `personal_info`(`id`, `mem_name`, `res_address`, `res_phone_no`, `cell_no`, `date_birth`, `nic_no`, `email`, `occupation`, `select_package`, `trainer`, `trainer_name`, `price`, `discount`, `total_price`) VALUES ('','$m_name','$re_address','$res_no','$cell_no','$date_birth','$nic','$email','$occupation','$sel_package','$trainer','$trainer_name','$pricee','$discountt','$total_price')";
-    
     if (mysqli_query($conn, $sql)) {
     } else {
         echo "Record can't Inserted";
     }
 }
 ?>
-
-
-<?php include 'content/header.php' ?>
+<?php include 'content/header.php'?>
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Admission Form</h3>
+                <h3>Admission Form:</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -79,45 +57,43 @@ if (isset($_POST['submit'])) {
                     <div class="x_title">
                         <div class="clearfix"></div>
                     </div>
+                    <div class="col-md-12 col-sm-12 text-center ">
+                <img classs="img " src="images/fitnest_empire.png " width="auto" height="200"> 
+              </div>
                     <div class="x_content">
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
-
-
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Member Name<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="name" id="first-name" class="form-control " name="name" required="required">
+                                    <input type="name" id="txtName" class="form-control " name="name" required="required" />
                                 </div>
                             </div>
-
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Res.Address <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="address" id="first-name" class="form-control " name="address" required="required">
+                                    <input type="address" id="first-name" class="form-control " name="address" required="required"  />
                                 </div>
                             </div>
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Res.Phone Number </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="phone_number" name="phone_no" accept="number">
+                                    <input class="form-control" type="phone_number" name="phone_no" onkeypress='return restrictAlphabets(event)' />   
                                 </div>
                             </div>
-
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cell Number <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" id="cell_no" type="cell_number" name="cell_no" maxlength="11" required="required">
+                                    <input class="form-control" id="txtnumber" type="cell_number" name="cell_no" maxlength="12" required="required" onkeypress='return restrictAlphabets(event)' /> 
                                 </div>
                             </div>
-
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="birthday" name="dt_birth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="dt_birth" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" required="required">
+                                    <input onchange="<?php $_isSubmit = false; ?>" id="birthday" name="dt_birth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="dt_birth" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" required="required"   />
                                     <!-- <script>
 													function timeFunctionLong(input) {
 														setTimeout(function() {
@@ -132,43 +108,45 @@ if (isset($_POST['submit'])) {
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">C.N.I.C No# <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control" id="cnic" type="cnic_number" name="nic" maxlength="13" required="required" >
+                                    <input class="form-control"   id="cnicnumber" type="cnic_number" name="nic" maxlength="14" required="required"  onkeypress='return restrictAlphabets(event)'/>
                                 </div>
                             </div>
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">E-Mail<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" id="email" name="email" class='email' type="email" type="text" required="required" />
+                                    <input class="form-control" id="email" name="email" class='email' type="email" type="text" required="required" />  
                                 </div>
                             </div>
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Occupation<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" class='optional' name="occupation" type="text" required="required" />
+                                    <input id="txtName" class="form-control" class='optional' name="occupation" type="text" required="required" /> 
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Select Package
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select id=sel1 class="form-control" onchange="myPackage(this.value)" name="select_pkge">
+                                    <select class="form-control" onchange="myPackage(this.value)" name="select_pkge">
+                                        <option value="" >Select Package</option>
                                         <?php
 
-                                        $sql = "SELECT * FROM `package`";
+                                        $sql = "SELECT * FROM package";
                                         $result = mysqli_query($conn, $sql);
                                         if (mysqli_num_rows($result) > 0) {
                                             while ($row = mysqli_fetch_assoc($result)) {
-                                                // $iden = $row["id"];
-
+                                                // $iden = $row["id"];  
+                                                $price_array[$row["add_package"]] = $row["price"];
                                         ?>
-
-                                                <option value="<?php echo ($row["price"]); ?>"><?php echo ($row["add_package"]); ?></option>
+                                        <!-- <input type="hidden" id="pkg_price" value="<?php echo ($row["price"]);?>"> -->
+                                             <option value="<?php echo ($row["add_package"]);?>"><?php echo ($row["add_package"]); ?></option>
                                         <?php
                                             }
                                         }
 
-                                        ?>
+                                        ?>  
                                     </select>
+                                    <?php //print_r($price_array); ?>
                                 </div>
                             </div>
                             <div class="field item form-group">
@@ -191,7 +169,8 @@ if (isset($_POST['submit'])) {
                                     <label class="col-form-label col-md-3 col-sm-3 label-align " for="first-name">Trainer's Name
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <select class="form-control" name="select_trainer" >
+                                        <select class="form-control" name="select_trainer">
+                                        <option value="" >Select Trainer</option>
                                             <?php
                                             $sql = "SELECT * FROM `add_trainer`";
                                             $result = mysqli_query($conn, $sql);
@@ -199,10 +178,8 @@ if (isset($_POST['submit'])) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     $iden = $row["id"];
                                             ?>
-                                                    <option> <?php echo ($row["trainer_name"]); ?>
-                                                       
-                                                    </option>
-
+                                           
+                                                    <option> <?php echo ($row["trainer_name"]); ?>  </option>
                                             <?php
 
                                                 }
@@ -213,8 +190,6 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </div>
-
-
                             <script>
                                 var price = 0;
                                 // var trainer;
@@ -222,12 +197,21 @@ if (isset($_POST['submit'])) {
                                 var isDiscout = 0;
                                 var isPackage = 0;
                                 // var myTrai = 0;
-                             
+
                                 function myPackage(value) {
-                                   price = value;
-                                    document.getElementById("price").value = value;
-                                    $('#total').val(value);
+                                    var packages = [];
+                                    <?php 
+                                    foreach($price_array as $key => $value)
+                                    { ?>
+                                        packages['<?php echo $key; ?>'] = <?php echo $value;?>;
+                                    <?php } ?>
+                                    console.log('packages : ',value)
+                                    console.log('packages : ',packages);
+                                    document.getElementById("price").value = packages[value];
+                                    price = packages[value];
+                                    $('#total').val(packages[value]);
                                 }
+
                                 function GetTotal() {
                                     var discount = $('#discount').val();
 
@@ -256,33 +240,29 @@ if (isset($_POST['submit'])) {
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align"> Price </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="price" class="form-control" type="number " name="price"  />
+                                    <input id="price"  class="form-control" type="number " name="price" onkeypress='return restrictAlphabets(event)'/>
                                 </div>
                             </div>
 
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align"> Discount% </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="discount" onchange="GetTotal()" class="form-control" type="number " name="discount">
+                                    <input id="discount" onchange="GetTotal()" class="form-control" type="number " name="discount"  >
                                 </div>
                             </div>
-
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align"> Total price </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input readonly id="total" class="form-control" type="text " name="number">
+                                    <input readonly id="total"  class="form-control" type="text " name="number" onkeypress='return restrictAlphabets(event)'  />
                                     <br><br>
                                 </div>
                             </div>
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-primary " name="submit" value="submit" onclick="window.print();" > Submit /Print</button>
-                                    <button type="submit" class="btn btn-success" name="submit" value="submit">Submit</button>
-                                </div>
+                            <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button type="submit" class="btn btn-primary no-print" name="submit" value="submit" onclick="window.print();"> Submit /Print</button>
+                                    <button type="submit"  class="btn btn-success no-print" name="submit" value="submit">Submit</button>
                             </div>
-
                         </form>
+                        <div class="ln_solid"></div>
                     </div>
                 </div>
             </div>
@@ -344,34 +324,91 @@ if (isset($_POST['submit'])) {
                 $("#dvTrainerNo").show();
             } else {
                 $("#dvTrainerNo").hide();
+                    ('trainer_name' == "");
+               
             }
         });
     });
 </script>
+<!-- <script>id="tbNum"
+	function addHyphen (element) {
+    	let ele = document.getElementById(element.id);
+        ele = ele.value.split('-').join('');    // Remove dash (-) if mistakenly entered.
+
+        let finalVal = ele.match(/.{1,5}/g).join('-');
+        document.getElementById(element.id).value = finalVal;
+    }
+</script> -->
 <script>
-//     function validate(email) {
+$(function () {
 
-// var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-// //var address = document.getElementById[email].value;
-// if (reg.test(email) == false) 
-// {
-//     alert('Invalid Email Address');
-//     return (false);
-// }
-// }
-// function validateEmail(emailField){
-//         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+$('#txtnumber').keydown(function (e) {
+ var key = e.charCode || e.keyCode || 0;
+ $text = $(this); 
+ {
 
-//         if (reg.test(emailField.value) == false) 
-//         {
-//             alert('Invalid Email Address');
-//             return false;
-//         }
+ 
+     if ($text.val().length === 4) {
+         $text.val($text.val() + '-');
+     }
+     if ($text.val().length === 7) {
+        //  $text.val($text.val() + '-');
+     }
 
-//         return true;
+ }
 
-// }
+ return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+})
+});
 </script>
+<script>
+$(function () {
+
+$('#cnicnumber').keydown(function (e) {
+ var key = e.charCode || e.keyCode || 0;
+ $text = $(this); 
+ 
+    if (key !== 8 && key !== 9) {
+ 
+     if ($text.val().length === 5) {
+         $text.val($text.val() + '-');
+     }
+     if ($text.val().length === 10) {
+        //  $text.val($text.val() + '-');
+     }
+
+ }
+ 
+ return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+})
+});
+</script>
+</script>
+      <script type="text/javascript">
+         /*code: 48-57 Numbers*/
+         function restrictAlphabets(e) {
+             var x = e.which || e.keycode;
+             if ((x >= 48 && x <= 57))
+                 return true;
+             else
+                 return false;
+         }
+      </script>
+      <script>
+ $('#txtName').keypress(function (e) {
+        var regex = new RegExp("^[a-zA-Z \s]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+        else
+        {
+        e.preventDefault();
+        // alert('Please Enter Alphabate');
+        return false;
+        }
+    });
+ </script>
 
 
 </body>
