@@ -75,6 +75,9 @@ if (mysqli_num_rows($result) > 0) {
         $discountt = $row["discount"];
         $total_price = $row["total_price"];
     }
+    $showDivFlag=false;
+
+    $name_trainer != null ? $showDivFlag = true  : $showDivFlag = false;
 }
 
 ?>
@@ -437,7 +440,7 @@ if (mysqli_num_rows($result) > 0) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="dvTrainerNo" style="display: none">
+                                        <div id="dvTrainerNo" <?php if ($showDivFlag===false){?>style='display:none' <?php } ?>>
                                             <div id="trainer" class="item form-group">
                                                 <label class="col-form-label col-md-3 col-sm-3 label-align " for="first-name">Trainer's Name
                                                 </label>
