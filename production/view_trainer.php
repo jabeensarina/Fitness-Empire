@@ -212,8 +212,9 @@ include 'connection.php';
                       <div class="col-md-4 col-sm-4  profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Users</i></h4>
-                            <div class="left col-md-7 col-sm-7">
+                            <h4 class="brief text-center"><b>Trainer</b></h4>
+                            <div class=" col-md-12 col-sm-8 mt-4">
+                            
 
                             <b><h6>Trainer Name:</b><?php echo $trainer_name; ?></h6>
                             <b> <h6>Trainer Fees:</b><?php echo $trainer_fees; ?></h6>
