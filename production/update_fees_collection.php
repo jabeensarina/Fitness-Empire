@@ -330,7 +330,7 @@ if (isset($_POST['update'])) {
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Update Monthly Fees Collection:</h3>
+              <h3>Monthly Fees Collection:</h3>
 
             </div>
           </div>
@@ -360,7 +360,7 @@ if (isset($_POST['update'])) {
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Cell No#</label>
                       <div class="col-md-6 col-sm-6 ">
 
-                        <input id="search" class="form-control" type="cell_no" name="cellno" maxlength="11" value="<?php echo $cell_no; ?>" onkeypress='return restrictAlphabets(event)' />
+                        <input id="search" class="form-control" type="cell_no" name="cellno" maxlength="12" value="<?php echo $cell_no; ?>" onkeypress='return restrictAlphabets(event)' />
 
                       </div>
                       <!-- <div class="col-md-2  ">

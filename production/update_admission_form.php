@@ -320,7 +320,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Update Admission Form:</h3>
+                            <h3>Admission Form:</h3>
                         </div>
                     </div>
                     <div class="clearfix"></div>
