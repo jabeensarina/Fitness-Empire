@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input onchange="<?php $_isSubmit = false; ?>" id="birthday" name="dt_birth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="dt_birth" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" required="required"   />
+                                    <input id="birthday" name="dt_birth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="dt_birth" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" required="required"   />
                                     <!-- <script>
 													function timeFunctionLong(input) {
 														setTimeout(function() {
@@ -357,7 +357,7 @@ $('#txtnumber').keydown(function (e) {
 
  }
 
- return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+//  return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 })
 });
 </script>

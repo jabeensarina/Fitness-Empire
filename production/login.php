@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
 $uname=$_POST['uname'];	
 $upass=$_POST['upass'];
 		
-$sql="SELECT * FROM `login` WHERE  pass = '$upass'";	
+$sql="SELECT * FROM `login` WHERE  password = '$upass'";	
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
 		
