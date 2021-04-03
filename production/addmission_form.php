@@ -47,13 +47,13 @@ if (isset($_POST['submit'])) {
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Admission Form:</h3>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
+                <h3>Admission Form:</h3>
                     <div class="x_title">
                         <div class="clearfix"></div>
                     </div>
@@ -330,15 +330,7 @@ if (isset($_POST['submit'])) {
         });
     });
 </script>
-<!-- <script>id="tbNum"
-	function addHyphen (element) {
-    	let ele = document.getElementById(element.id);
-        ele = ele.value.split('-').join('');    // Remove dash (-) if mistakenly entered.
 
-        let finalVal = ele.match(/.{1,5}/g).join('-');
-        document.getElementById(element.id).value = finalVal;
-    }
-</script> -->
 <script>
 $(function () {
 
@@ -346,7 +338,7 @@ $('#txtnumber').keydown(function (e) {
  var key = e.charCode || e.keyCode || 0;
  $text = $(this); 
  {
-
+    if (key !== 8 && key !== 9) {
  
      if ($text.val().length === 4) {
          $text.val($text.val() + '-');
@@ -357,8 +349,8 @@ $('#txtnumber').keydown(function (e) {
 
  }
 
-//  return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-})
+ return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+}})
 });
 </script>
 <script>

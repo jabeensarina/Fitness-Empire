@@ -141,6 +141,7 @@ if (isset($_POST['submit'])) {
                   <ul class="nav child_menu">
                     <li><a href="expenses.php">Expenses</a> </a></li>
                     <li><a href="fees_collection.php">Fees Collection</a></a></li>
+					<li><a href="due_fees collection.php">Due Fees</a></a></li>
 
                   </ul>
                 </li>
@@ -199,13 +200,13 @@ if (isset($_POST['submit'])) {
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Add Package:</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
+							<h3>Add Package:</h3>
 								<div class="x_title">
 									<div class="clearfix"></div>
 								</div>

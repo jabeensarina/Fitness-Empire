@@ -101,6 +101,7 @@ include 'connection.php';
                   <ul class="nav child_menu">
                     <li><a href="expenses.php">Expenses</a> </a></li>
                     <li><a href="fees_collection.php">Fees Collection</a></a></li>
+                    <li><a href="due_fees collection.php">Due Fees</a></a></li>
 
                   </ul>
                 </li>

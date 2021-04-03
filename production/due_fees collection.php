@@ -1,3 +1,74 @@
+<?php
+  //  $date_now = date_create(date('Y-m-d'));
+  //  $date_db = date_create('2021-01-23');
+
+  //  $date_diff = date_diff($date_now,$date_db);
+  //  echo '<pre>';
+  //  print_r($date_diff);
+  //  echo '</pre>';
+  //  if($date_diff->d < 30)echo 'less than 30 days';
+  //  $futureDate = date('Y-m-d', strtotime("+30 days"));
+
+  // --------------------------
+  // $invoicedate = strtotime("2021-01-23");
+  // $TodayDate = strtotime('today');
+ 
+  // $timeDiff = abs($TodayDate - $invoicedate);
+ 
+  // $numberDays = $timeDiff/86400;  // 86400 seconds in one day
+ 
+  // $numberDays = intval($numberDays);
+ 
+  // $noOfdaysToCheck ="30";
+ 
+  // $total ="1000";
+ 
+  // if ($numberDays >= $noOfdaysToCheck)
+
+  // {$late = (1.5 / 100) * $total; }
+// -------------------------
+// include 'connection.php';
+// $sql = "SELECT * FROM `monthly_fee` ";
+
+// // $sql ="SELECT * FROM monthly_fee WHERE date < date_sub(now(), interval 1 month)";
+// $result = mysqli_query($conn, $sql);
+// if (mysqli_num_rows($result) > 0) {
+//   while ($row = mysqli_fetch_assoc($result)) {
+//     $date =$row["date"];
+
+// date('Y-m-d',$exp_date=strtotime('+30 days',strtotime( "$date"))) . PHP_EOL;
+// // $exp_date = strtotime("$date");
+// $notify_start_date = strtotime('-15 days',$exp_date );
+// $notify_end_date = strtotime('+15 days', $exp_date);
+// $now = new DateTime();
+// $now = $now->format('Y-m-d');
+// $now = strtotime($now);
+// echo '<br>';
+
+// echo 'Expiry Date--->'.date('Y-m-d',$exp_date).'<br>';
+// echo 'Nofity Start Date--->'.date('Y-m-d',$notify_start_date).'<br>';
+// echo 'Nofity End Date--->'.date('Y-m-d',$notify_end_date).'<br>';
+// echo 'Today--->'.date('Y-m-d',$now).'<br>';
+
+
+// if ( $exp_date > $notify_start_date  &&  $exp_date < $notify_end_date ) {
+//     if ($exp_date < $now) {
+//         echo "Already Expired";
+//     } 
+//     if ($exp_date == $now) {
+//         echo "Will Expire Today";
+        
+//     }
+//     if ($exp_date > $now) {
+//         echo "Going To Expire ";
+//     }
+// } else {
+//     echo 'False';
+// }
+// }}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,13 +111,9 @@
           <div class="clearfix"></div>
           <div class="profile clearfix">
             <div class="profile_pic">
-
             </div>
           </div>
-
-
           <br />
-
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
@@ -155,27 +222,9 @@
         </div>
       </div>
       <!-- /top navigation -->
-      <?php
-      include 'connection.php';
-      if (isset($_POST['del_fee'])) {
-        $slip_no = $_POST['del_fee'];
-
-
-        $del = "DELETE FROM `monthly_fee` WHERE `slip_no` = '$slip_no'";
-
-
-        // echo $iden;
-
-        if (mysqli_query($conn, $del)) {
-        } else {
-          echo "  Record Can't Delete";
-        }
-      }
-      ?>
-
-
-      <!-- page content -->
-      <div class="right_col" role="main">
+   
+    <!-- page content -->
+    <div class="right_col" role="main">
         <div class="">
           <div class="page-title">
             <div class="title_left">
@@ -185,38 +234,31 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 ">
               <div class="x_panel">
-              <h3>Fee Collection:</h3>
+              <h3>Due Fee:</h3>
                 <div class="x_title">
                   <div class="clearfix"></div>
                
                 </div>
+                <!-- <div class="col-md-12 col-sm-12 text-center ">
+                <img classs="img " src="images/fitnest_empire.png " width="auto" height="200"> 
+              </div> -->
                 <div class="x_content">
                   <br />
   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
     <div class="col-md-12 col-sm-12">
-        <div class="page-title ">
-                      <div class="title_right">
-                <div class="col-md-5 col-sm-5 form-group pull-right top_search ">
-                  <div class="input-group ">
-                    <input type="text" id="txtnumber" maxlength="12" name="cell_no_search" onkeyup="myFunction()"  onkeypress="addHyphen()" class="form-control" placeholder="Search ...">
-                    <span class="input-group-btn">
-                      <button type="submit" name="search" class="btn btn-default bg-dark"><i class="fa fa-search "></i></button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-    </div>
+    
         <div class="container pt-4">
-          <div class="table-responsive">
+          <div class="table-responsive" >
             <!-- <table id="table" class="table table-striped jambo_table " > -->
             <table id="table" class="table table-hover " >
-              <thead class="thead-dark">
+
+                       <thead class="thead-dark">
                         <tr class="text-center">
                         <th class="text-center">Priv.Slip No</th>
                           <th class="text-center">Cell No</th>
                           <th class="text-center">Name</th>
                           <th class="text-center">Date</th>
-                          <th class="text-center">Membership No.FE 786</th>
+                          <th class="text-center">Membership No.FNC 786</th>
                           <th class="text-center">Period</th>
                           <th class="text-center">To</th>
                           <th class="text-center">Month Gym</th>
@@ -238,20 +280,31 @@
                           <th class="text-center">Sittings:Steam / Suana Bath</th>
                           <th class="text-center">Rs:</th>
                           <th class="text-center">Trainer Name:</th>
-                          <th class="text-center">Edit:</th>
+                          <th class="text-center">Expired:</th>
+                          <th class="text-center">View:</th>
                           <th class="text-center">Delete:</th>
                         </tr>
                         <tbody class="text-center">
-                        <?php
-                    
-                    include 'connection.php';
-                    $sql = "SELECT * FROM `monthly_fee`";
-                    
-                    $result = mysqli_query($conn, $sql);
-                     if (mysqli_num_rows($result)>0) {
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-<tr>
+                         
+ <?php
+include 'connection.php';
+// $isExpired = 'false';
+$slip_no="";
+// $sql = "SELECT * FROM `monthly_fee`";
+// public function notification(){
+  // $query=$this->db->query
+//   ('SELECT *, DATE_SUB(deadline, INTERVAL 1 MONTH) as alert_now 
+//             FROM notif WHERE curdate() = DATE_SUB(deadline, INTERVAL 1 MONTH)');
+//   return $result=$query;
+// }
+// $sql = "SELECT * FROM `monthly_fee` WHERE date <= DATE_ADD(CURDATE(), INTERVAL 15 DAY) AND date >= DATE_ADD(CURDATE(), INTERVAL -15 DAY)";
+$sql = "SELECT * FROM `monthly_fee` WHERE date <= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) AND date >= DATE_ADD(CURDATE(), INTERVAL -1 MONTH) ORDER BY `date`";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $date =$row["date"];                             
+    echo '
+<tr> 
 <td> ' . $row["slip_no"] . ' </td>
 <td> ' . $row["cell_no"] . ' </td>
 <td> ' . $row["name"] . ' </td>
@@ -279,11 +332,13 @@
 <td> ' . $row["sitting"] . ' </td>
 <td> ' . $row["rups"] . ' </td>
 <td> ' . $row["trainer"] . ' </td>
-<td>  <a  href="update_fees_collection.php?slip_no='. $row['slip_no'] . '" class="btn btn-success btn-sm" >
-<i class="fa fa-pencil">Edit
-</i> </a> </td> 
+<input type="hidden" ' .date('Y-m-d',$exp_date=strtotime('+30 days',strtotime( "$date"))) . PHP_EOL . ' />
+<td> ' . '<b>Expiry  Date'.date('Y-m-d',$exp_date) . ' </td>
 
-<td> <button type="submit" class="btn btn-danger btn-sm"  name="del_fee" value="' . $row['slip_no'] . '"><i class="fa fa-trash-o"> </i>Delete
+<td>  <a  href="pay_monthly_fee.php?slip_no='. $row['slip_no'] . '" class="btn btn-success btn-sm" >
+<i class="fa fa-eye">View
+</i> </a> </td> 
+<td> <button  class="btn btn-danger btn-sm"  type="button" value="Delete" onclick="deleteRow(this)"> <i class="fa fa-close"> </i>Ignore
 </button> 
 </td>
 </tr>
@@ -291,7 +346,6 @@
   }
 }
 ?>
-
                       </thead>
                       </tbody>
                     </table>
@@ -319,7 +373,6 @@
       <!-- /footer content -->
     </div>
   </div>
-
   <!-- jQuery -->
   <script src="../vendors/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -333,63 +386,15 @@
 
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
-  
-<script>
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("txtnumber");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
+  <script>
+// function deleteRow(r) {
+//   var i = r.parentNode.parentNode.rowIndex;
+//   document.getElementById("table").deleteRow(i);
+// }
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
 }
 </script>
-
-  </script>
-  <!-- <script>id="tbNum"
-	function addHyphen (element) {
-    	let ele = document.getElementById(element.id);
-        ele = ele.value.split('-').join('');    // Remove dash (-) if mistakenly entered.
-
-        let finalVal = ele.match(/.{1,4}/g).join('-');
-        document.getElementById(element.id).value = finalVal;
-    }
-</script> -->
-<script>
-$(function () {
-  
-$('#txtnumber').keydown(function (e) {
- var key = e.charCode || e.keyCode || 0;
- $text = $(this); 
- {
-
-  if (key !== 8 && key !== 9) {
-     if ($text.val().length === 4) {
-         $text.val($text.val() + '-');
-     }
-     if ($text.val().length === 7) {
-        //  $text.val($text.val() + '-');
-     }
-
- }
-
- return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-}})
-});
-</script>
 </body>
-
 </html>

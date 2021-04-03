@@ -140,6 +140,8 @@ if (isset($_POST['submit'])) {
 
 
 }
+
+
 ?>
 
 <?php
@@ -230,6 +232,7 @@ $sql = "SELECT `slip_no`  FROM `monthly_fee` order by `slip_no` ";
                   <ul class="nav child_menu">
                     <li><a href="expenses.php">Expenses</a> </a></li>
                     <li><a href="fees_collection.php">Fees Collection</a></a></li>
+                    <li><a href="due_fees collection.php">Due Fees</a></a></li>
                   </ul>
                 </li>
               </ul>
@@ -331,7 +334,7 @@ $sql = "SELECT `slip_no`  FROM `monthly_fee` order by `slip_no` ";
                       </div>
                     </div>
                     <div class="item form-group">
-                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Membership No.FE 786-
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Membership No.FNC 786-
                       </label>
                       <div class="col-md-6 col-sm-6 ">
                         <!-- <input type="mem_no" id="first-name"  class="form-control " name="mem_no"> -->
@@ -600,7 +603,7 @@ $('#txtnumber').keydown(function (e) {
  $text = $(this); 
  {
 
- 
+  if (key !== 8 && key !== 9) {
      if ($text.val().length === 4) {
          $text.val($text.val() + '-');
      }
@@ -611,7 +614,7 @@ $('#txtnumber').keydown(function (e) {
  }
 
  return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-})
+}})
 });
 </script>
 </html>

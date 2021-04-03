@@ -112,7 +112,7 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 <?php
 $conn = mysqli_connect("localhost", "root", "", "admin");
-if (isset($_POST['update'])) {
+if (isset($_POST['pay'])) {
 
   error_reporting(E_ERROR | E_PARSE);
   // $id=$_POST['id'];
@@ -553,8 +553,8 @@ if (isset($_POST['update'])) {
                     </div>
                     <br>
                       <div class="col-md-6 col-sm-6 offset-md-3">
-                      <button type="submit" class="btn btn-primary no-print" name="update" value="submit" onclick="window.print();"> Update /Print</button>
-                      <button type="submit"  class="btn btn-success no-print" name="update" value="submit">Update</button>
+                      <button type="submit" class="btn btn-primary no-print" name="pay" value="submit" onclick="window.print();"> Pay /Print</button>
+                      <button type="submit"  class="btn btn-success no-print" name="pay" value="submit">Pay</button>
                       </div>
                   </form>
                   <div class="ln_solid"></div>
@@ -628,9 +628,7 @@ if (isset($_POST['update'])) {
         }
       }
     </script>
-<!-- <script>
-var selected_option = $('#myselect option:selected');
-</script> -->
+
 
 <script>
  $('#txtName').keypress(function (e) {

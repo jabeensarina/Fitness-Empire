@@ -104,6 +104,7 @@ include 'connection.php';
                   <ul class="nav child_menu">
                     <li><a href="expenses.php">Expenses</a> </a></li>
                     <li><a href="fees_collection.php">Fees Collection</a></a></li>
+                    <li><a href="due_fees collection.php">Due Fees</a></a></li>
 
                   </ul>
                 </li>
@@ -181,7 +182,6 @@ include 'connection.php';
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>View Admission Form:</h3>
             </div>
           </div>
 
@@ -190,6 +190,7 @@ include 'connection.php';
           <form method="post">
             <div class="row">
               <div class="x_panel">
+              <h3>View Admission Form:</h3>
                 <div class="x_content">
                   <div class="col-md-12 col-sm-12  text-center">
                     <ul class="pagination pagination-split">
