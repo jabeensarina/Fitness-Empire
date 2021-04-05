@@ -1,74 +1,3 @@
-<?php
-  //  $date_now = date_create(date('Y-m-d'));
-  //  $date_db = date_create('2021-01-23');
-
-  //  $date_diff = date_diff($date_now,$date_db);
-  //  echo '<pre>';
-  //  print_r($date_diff);
-  //  echo '</pre>';
-  //  if($date_diff->d < 30)echo 'less than 30 days';
-  //  $futureDate = date('Y-m-d', strtotime("+30 days"));
-
-  // --------------------------
-  // $invoicedate = strtotime("2021-01-23");
-  // $TodayDate = strtotime('today');
- 
-  // $timeDiff = abs($TodayDate - $invoicedate);
- 
-  // $numberDays = $timeDiff/86400;  // 86400 seconds in one day
- 
-  // $numberDays = intval($numberDays);
- 
-  // $noOfdaysToCheck ="30";
- 
-  // $total ="1000";
- 
-  // if ($numberDays >= $noOfdaysToCheck)
-
-  // {$late = (1.5 / 100) * $total; }
-// -------------------------
-// include 'connection.php';
-// $sql = "SELECT * FROM `monthly_fee` ";
-
-// // $sql ="SELECT * FROM monthly_fee WHERE date < date_sub(now(), interval 1 month)";
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result) > 0) {
-//   while ($row = mysqli_fetch_assoc($result)) {
-//     $date =$row["date"];
-
-// date('Y-m-d',$exp_date=strtotime('+30 days',strtotime( "$date"))) . PHP_EOL;
-// // $exp_date = strtotime("$date");
-// $notify_start_date = strtotime('-15 days',$exp_date );
-// $notify_end_date = strtotime('+15 days', $exp_date);
-// $now = new DateTime();
-// $now = $now->format('Y-m-d');
-// $now = strtotime($now);
-// echo '<br>';
-
-// echo 'Expiry Date--->'.date('Y-m-d',$exp_date).'<br>';
-// echo 'Nofity Start Date--->'.date('Y-m-d',$notify_start_date).'<br>';
-// echo 'Nofity End Date--->'.date('Y-m-d',$notify_end_date).'<br>';
-// echo 'Today--->'.date('Y-m-d',$now).'<br>';
-
-
-// if ( $exp_date > $notify_start_date  &&  $exp_date < $notify_end_date ) {
-//     if ($exp_date < $now) {
-//         echo "Already Expired";
-//     } 
-//     if ($exp_date == $now) {
-//         echo "Will Expire Today";
-        
-//     }
-//     if ($exp_date > $now) {
-//         echo "Going To Expire ";
-//     }
-// } else {
-//     echo 'False';
-// }
-// }}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -280,7 +209,6 @@
                           <th class="text-center">Sittings:Steam / Suana Bath</th>
                           <th class="text-center">Rs:</th>
                           <th class="text-center">Trainer Name:</th>
-                          <th class="text-center">Expired:</th>
                           <th class="text-center">View:</th>
                           <th class="text-center">Delete:</th>
                         </tr>
@@ -332,8 +260,6 @@ if (mysqli_num_rows($result) > 0) {
 <td> ' . $row["sitting"] . ' </td>
 <td> ' . $row["rups"] . ' </td>
 <td> ' . $row["trainer"] . ' </td>
-<input type="hidden" ' .date('Y-m-d',$exp_date=strtotime('+30 days',strtotime( "$date"))) . PHP_EOL . ' />
-<td> ' . '<b>Expiry  Date'.date('Y-m-d',$exp_date) . ' </td>
 
 <td>  <a  href="pay_monthly_fee.php?slip_no='. $row['slip_no'] . '" class="btn btn-success btn-sm" >
 <i class="fa fa-eye">View
@@ -386,15 +312,6 @@ if (mysqli_num_rows($result) > 0) {
 
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
-  <script>
-// function deleteRow(r) {
-//   var i = r.parentNode.parentNode.rowIndex;
-//   document.getElementById("table").deleteRow(i);
-// }
-function deleteRow(btn) {
-  var row = btn.parentNode.parentNode;
-  row.parentNode.removeChild(row);
-}
-</script>
+
 </body>
 </html>
